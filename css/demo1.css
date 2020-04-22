@@ -1,0 +1,19 @@
+.center{
+     margin: 0 auto;
+}
+.clearfix{
+     clear: both;
+}
+.floatR{
+     float: right;
+}
+.floatL{
+     float: left;
+}
+.marginL20{
+     margin-left: 20px;
+     transform: translateY();
+}
+.marginR10{
+     margin-right: 10px;
+}
