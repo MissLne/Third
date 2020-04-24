@@ -1,113 +1,87 @@
 function myAjax(obj) {
 
     var defaults = {
-        type:"get",
-        url:"#",
-        dataType:"json",
-        data:{},
-        async:true,
-        success:function(result){console.log(result);}
+        type: "get",
+        url: "#",
+        dataType: "json",
+        data: {},
+        async: true,
+        success: function (result,articles) {
+        }
     };
 
-    for(var key in obj){
+    for (var key in obj) {
         defaults[key] = obj[key];
     }
 
     var xhr = null;
-    if(window.XMLHttpRequest) {
-         xhr = new XMLHttpRequest();
+    if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
     } else {
         xhr = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
 
     var params = '';
-    for(var attr in defaults.data){
+    for (var attr in defaults.data) {
         params += attr + "=" + defaults.data[attr] + "&";
     }
-    if(params){
-        params = params.substring(0,params.length - 1);
+    if (params) {
+        params = params.substring(0, params.length - 1);
     }
-    if(defaults.type == 'get'){
+    if (defaults.type == 'get') {
         defaults.url += "?" + params;
     }
-    xhr.open(defaults.type,defaults.url,defaults.async);
+    xhr.open(defaults.type, defaults.url, defaults.async);
 
-    if(defaults.type == 'get'){
+    if (defaults.type == 'get') {
         xhr.send(null);
-    } else if(defaults.type == 'post') {
-        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    } else if (defaults.type == 'post') {
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send(params);
     }
 
-    if(defaults.async){
-        xhr.ajax.onreadystatechange = function () {
+    if (defaults.async) {
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                var result = null;
+                var articles = null;
+                if (defaults.dataType == 'json') {
+                    result = xhr.responseText;
+                    result = JSON.parse(result);
+                    articles = xhr.responseText;
+                    articles = JSON.parse(articles);
+                } else if (defaults.dataType == 'xml') {
+                    result = xhr.responseXML;
+                    articles = xhr.responseXML;
+                } else {
+                    articles = xhr.responseText;
+                    result = xhr.responseText;
+                }
+                defaults.success(result,articles);
+            }
+        }
+    } else {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            
+
             var result = null;
-            if(defaults.dataType == 'json'){
+            var articles = null;
+            if (defaults.dataType == 'json') {
                 result = xhr.responseText;
+                articles = xhr.responseText;
                 result = JSON.parse(result);
-            } else if(defaults.dataType == 'xml') {
+                articles = JSON.parse(articles);
+            } else if (defaults.dataType == 'xml') {
                 result = xhr.responseXML;
             } else {
                 result = xhr.responseText;
             }
-            defaults.success(result);
-        }
-        }
-    }else{
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            
-            var result = null;
-            if(defaults.dataType == 'json'){
-                result = xhr.responseText;
-                result = JSON.parse(result);
-            } else if(defaults.dataType == 'xml') {
-                result = xhr.responseXML;
-            } else {
-                result = xhr.responseText;
-            }
-            defaults.success(result);
+            defaults.success(result,articles);
         }
     }
 }
 
-
-// function myAjax1(obj){
-//     var defaults = {
-//         type:"get",
-//         url:"#",
-//         data:{},
-//         success:function(data){},
-//         jsonp:"callback",
-//         jsonpCallback:"hehe"
-//     };
-
-//     for(var key in obj) {
-//         defaults[key] = obj[key];
-//     }
-
-//     var params = '';
-//     for(var attr in defaults.data){
-//         params += attr + "=" + defaults.data[attr] + "&";
-//     }
-//     if(params){
-//         params = params.substring(0,params.length - 1);
-//         defaults.url += "?" + params;
-//     }
-//     defaults.url += "&" + defaults.jsonp + "=" + defaults.jsonpCallback;
-
-//     var script = document.createElement("script");
-//     script.src = defaults.url;
-
-//     window[defaults.jsonpCallback] = function(data){
-//         defaults.success(data);
-//     }
-
-//     var head = document.querySelector("head");
-//     head.appendChild(script);
-// }
 
 var head_container1 = document.querySelector('.head_container1');
 var head_container2 = document.querySelector('.head_container2');
@@ -198,3 +172,222 @@ var pictrue = document.getElementById('pictrue');
 pictrue_btn.onclick = function(){
     pictrue.style.height = '0';
 }
+
+let logon_account = document.querySelector(".logon_account");
+let logon_pd = document.querySelector(".logon_pd");
+let logon_password = document.querySelector(".logon_password");
+let logon_eye = document.querySelector(".logon_eye");
+
+
+logon_account.onfocus = function(){
+    if(this.value == '手机号或邮箱' || this.value == '请输入手机号或邮箱'){
+        this.value = '';
+        this.style.color = '#2b2b2b';
+    }
+}
+logon_account.onblur = function(){
+    if(this.value == ''){
+        this.value = '请输入手机号或邮箱';
+        this.style.color = '#f00';
+    }
+}
+logon_password.onfocus = function(){
+    if(logon_pd.innerHTML == '密码' || logon_pd.innerHTML == '请输入密码'){
+        logon_pd.innerHTML = '';
+        logon_pd.style.color = '#2b2b2b';
+    }
+}
+logon_password.onblur = function(){
+    if(this.value == ''){
+        logon_pd.innerHTML = '请输入密码';
+        logon_pd.style.color = '#f00';
+    }
+}
+
+
+var flag = 1;
+logon_eye.onclick = function(){
+    if(flag){
+        this.innerHTML = '&#xe6a0;';
+        this.style.right = '.5vw';
+        logon_password.type = 'text';
+        flag = 0;
+    } else {
+        this.innerHTML = '&#xe503;';
+        this.style.right = '0';
+        logon_password.type = 'password';
+        flag = 1;
+    }
+}
+let logon_button = document.querySelector(".logon_button");
+
+let know = document.getElementById("know");
+let logon = document.getElementById("logon");
+
+
+
+
+
+
+// function myAjax(obj) {
+
+//     var defaults = {
+//         type:"get",
+//         url:"#",
+//         dataType:"json",
+//         data:{},
+//         async:true,
+//         success:function(result){console.log(result);}
+// };
+
+//     for(var key in obj){
+//         defaults[key] = obj[key];
+//     }
+
+//     var xhr = null;
+//     if(window.XMLHttpRequest) {
+//          xhr = new XMLHttpRequest();
+//     } else {
+//         xhr = new ActiveXObject("Microsoft.XMLHTTP");
+//     }
+
+
+//     var params = '';
+//     for(var attr in defaults.data){
+//         params += attr + "=" + defaults.data[attr] + "&";
+//     }
+//     if(params){
+//         params = params.substring(0,params.length - 1);
+//     }
+//     if(defaults.type == 'get'){
+//         defaults.url += "?" + params;
+//     }
+//     xhr.open(defaults.type,defaults.url,defaults.async);
+
+//     if(defaults.type == 'get'){
+//         xhr.send(null);
+//     } else if(defaults.type == 'post') {
+//         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//         xhr.send(params);
+//     }
+
+//     if(defaults.async){
+//         xhr.ajax.onreadystatechange = function () {
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+            
+//             var result = null;
+//             if(defaults.dataType == 'json'){
+//                 result = xhr.responseText;
+//                 result = JSON.parse(result);
+//             } else if(defaults.dataType == 'xml') {
+//                 result = xhr.responseXML;
+//             } else {
+//                 result = xhr.responseText;
+//             }
+//             defaults.success(result);
+//         }
+//         }
+//     }else{
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+            
+//             var result = null;
+//             if(defaults.dataType == 'json'){
+//                 result = xhr.responseText;
+//                 result = JSON.parse(result);
+//             } else if(defaults.dataType == 'xml') {
+//                 result = xhr.responseXML;
+//             } else {
+//                 result = xhr.responseText;
+//             }
+//             defaults.success(result);
+//         }
+//     }
+// }
+
+
+// logon_button.onclick = function(){
+//     var logonm = {
+//         type:"post",
+//         url:"http://47.97.204.234:3000/user/login",
+//         dataType:"json",
+//         data:{
+//             "username": "null",
+//             "password": "null"
+//         },
+//         async:true,
+//         success:function(result){console.log(result);}
+//     };
+//     logonm.data.username = logon_account.value;
+//     logonm.data.password = logon_password.value;
+//     myAjax(logonm);
+// }
+var mybody = document.getElementsByTagName("body");
+logon_button.addEventListener("click", function () {
+    let setting = {
+        type: "post",
+        url: "http://47.97.204.234:3000/user/login",
+        dataType: "json",
+        data: {
+            "username": "null",
+            "password": "null"
+        }, 
+        async: true,
+        success: function (result) {
+            console.log(result);
+            if(result.result == 'success'){
+                know.style.display = 'block';
+                logon.style.display = 'none';
+                mybody[0].style.background = '#f6f6f6';
+
+            }
+        }
+
+    }
+    setting.data.username=logon_account.value;
+    setting.data.password=logon_password.value;
+    myAjax(setting);
+})
+let before_title = document.getElementsByClassName('before_title');
+let before_userid = document.getElementsByClassName('before_userid');
+let before_content = document.getElementsByClassName('before_content');
+let before_btn = document.getElementsByClassName('before_btn');
+
+let after_title = document.getElementsByClassName('after_title');
+let after_userid = document.getElementsByClassName('after_userid');
+let after_img = document.getElementsByClassName('after_img');
+let after_introduce = document.getElementsByClassName('after_introduce');
+let after_agree = document.getElementsByClassName('after_agree');
+let after_content = document.getElementsByClassName('after_content');
+let after_date = document.getElementsByClassName('after_date');
+
+let main_article = document.getElementsByClassName('main_article');
+
+window.onload = function(){
+    onload0to4();
+    onload4to8();
+    onload8to9();
+    onload10to14();
+    onload14to18();
+    }
+   
+
+
+
+var article_stop = document.querySelectorAll(".article_stop");
+var article_after = document.querySelectorAll(".article_after");
+var article_before = document.querySelectorAll(".article_before");
+for(let a = 0;a < before_btn.length;a++){
+    before_btn[a].onclick = function(){
+        article_before[a].style.display = 'none';
+        article_after[a].style.display = 'block';
+        article_stop[a].style.display = 'block';
+    }
+}
+for(let b = 0;b < article_stop.length;b++){
+    article_stop[b].onclick = function(){
+        article_before[b].style.display = 'block';
+        article_after[b].style.display = 'none';
+        article_stop[b].style.display = 'none';
+    }
+}
+

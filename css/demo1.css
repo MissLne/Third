@@ -17,3 +17,17 @@
 .marginR10{
      margin-right: 10px;
 }
+.colorGreen {
+     color: #60C84D;
+}
+.colorBlue {
+     color: #50C8FD;
+}
+
+.colorRed {
+     color: #FC824B;
+}
+._margin {
+     margin: 0 .6vw;
+}
+

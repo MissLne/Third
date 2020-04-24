@@ -13,6 +13,13 @@
       "unicode_decimal": 59122
     },
     {
+      "icon_id": "744715",
+      "name": "知乎",
+      "font_class": "3zhihuicon3",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
       "icon_id": "848826",
       "name": "聊天",
       "font_class": "liaotian",
@@ -39,6 +46,13 @@
       "font_class": "wenjuan",
       "unicode": "e6b9",
       "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "1908601",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "e631",
+      "unicode_decimal": 58929
     },
     {
       "icon_id": "1948906",
@@ -69,11 +83,25 @@
       "unicode_decimal": 59781
     },
     {
+      "icon_id": "2513617",
+      "name": "知乎",
+      "font_class": "zhihu",
+      "unicode": "e809",
+      "unicode_decimal": 59401
+    },
+    {
       "icon_id": "2620274",
       "name": "气泡 多",
       "font_class": "qipaoduo",
       "unicode": "e8c6",
       "unicode_decimal": 59590
+    },
+    {
+      "icon_id": "2951738",
+      "name": "知乎",
+      "font_class": "matuwang-zhihufangxingdianji",
+      "unicode": "e603",
+      "unicode_decimal": 58883
     },
     {
       "icon_id": "3108517",
@@ -104,11 +132,25 @@
       "unicode_decimal": 59114
     },
     {
+      "icon_id": "3507403",
+      "name": "QQ",
+      "font_class": "QQ",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
       "icon_id": "3534744",
       "name": "更多",
       "font_class": "gengduo",
       "unicode": "e66a",
       "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "3684711",
+      "name": "下箭头",
+      "font_class": "icon",
+      "unicode": "e501",
+      "unicode_decimal": 58625
     },
     {
       "icon_id": "4000683",
@@ -156,8 +198,8 @@
       "icon_id": "5201461",
       "name": "花 (14)",
       "font_class": "hua",
-      "unicode": "e631",
-      "unicode_decimal": 58929
+      "unicode": "e632",
+      "unicode_decimal": 58930
     },
     {
       "icon_id": "5298199",
@@ -202,11 +244,11 @@
       "unicode_decimal": 59004
     },
     {
-      "icon_id": "6677634",
-      "name": "箭头",
-      "font_class": "jiantou2",
-      "unicode": "e641",
-      "unicode_decimal": 58945
+      "icon_id": "6919709",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e645",
+      "unicode_decimal": 58949
     },
     {
       "icon_id": "6991035",
@@ -230,6 +272,13 @@
       "unicode_decimal": 59213
     },
     {
+      "icon_id": "7789036",
+      "name": "知乎",
+      "font_class": "zhihu1",
+      "unicode": "e519",
+      "unicode_decimal": 58649
+    },
+    {
       "icon_id": "7796906",
       "name": "书本",
       "font_class": "icon-test",
@@ -240,8 +289,8 @@
       "icon_id": "8398783",
       "name": "心 爱心-111",
       "font_class": "xinaixin",
-      "unicode": "e519",
-      "unicode_decimal": 58649
+      "unicode": "e51a",
+      "unicode_decimal": 58650
     },
     {
       "icon_id": "8829672",
@@ -249,6 +298,13 @@
       "font_class": "wenjuan1",
       "unicode": "e625",
       "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "8833882",
+      "name": "隐藏密码",
+      "font_class": "yincangmima",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
     },
     {
       "icon_id": "8945890",
@@ -314,11 +370,18 @@
       "unicode_decimal": 59061
     },
     {
+      "icon_id": "11478763",
+      "name": "眼睛",
+      "font_class": "yanjing1",
+      "unicode": "e503",
+      "unicode_decimal": 58627
+    },
+    {
       "icon_id": "11600425",
       "name": "纸飞机",
       "font_class": "zhifeiji",
-      "unicode": "e501",
-      "unicode_decimal": 58625
+      "unicode": "e505",
+      "unicode_decimal": 58629
     },
     {
       "icon_id": "12140805",
@@ -368,6 +431,13 @@
       "font_class": "heziye-xuanzhong",
       "unicode": "e60e",
       "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "12816255",
+      "name": "开通状态-成功",
+      "font_class": "kaitongzhuangtai-chenggong",
+      "unicode": "e630",
+      "unicode_decimal": 58928
     },
     {
       "icon_id": "13035488",
